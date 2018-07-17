@@ -13,7 +13,7 @@ class JDBCbook {
 	private String[][] datas3;
 	private String[][] datas4;
 	private String[][] datas2s;
-	public void Insert_Book(int id,String name,String publishers,String author){//²éÑ¯ËùÓĞÊé¼®
+	public void Insert_Book(int id,String name,String publishers,String author){//æŸ¥è¯¢æ‰€æœ‰ä¹¦ç±
     	Connection connection=null;
     	Statement statement=null;
     	        try {
@@ -23,14 +23,14 @@ class JDBCbook {
 		} catch (java.lang.Exception exception) {
 		    exception.printStackTrace();
 		}
-		//2.´´½¨Êı¾İ¿âÁ¬½Ó×Ö·û´®
+		//2.åˆ›å»ºæ•°æ®åº“è¿æ¥å­—ç¬¦ä¸²
 		
 		try {
 			connection = DriverManager.getConnection(dbURL, "root", "980401");
 		    String sql="insert into adminbook (id,book_name,book_publishers,book_author)values("+id+",'"+name+"','"+publishers+"','"+author+"')";
             statement = connection.createStatement();
             int rows=statement.executeUpdate(sql);
-		    System.out.println("ÄúÒÑ³É¹¦Ìí¼Ó"+rows+"ÌõÊı¾İ");
+		    System.out.println("æ‚¨å·²æˆåŠŸæ·»åŠ "+rows+"æ¡æ•°æ®");
 		    
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -39,7 +39,7 @@ class JDBCbook {
 			this.colse(connection, statement,null);
 		}
         }
-	public void Updata_Book(int id,String name,String publishers,String author){//²éÑ¯ËùÓĞÊé¼®
+	public void Updata_Book(int id,String name,String publishers,String author){//æŸ¥è¯¢æ‰€æœ‰ä¹¦ç±
     	Connection connection=null;
     	Statement statement=null;
     	
@@ -50,15 +50,15 @@ class JDBCbook {
 		} catch (java.lang.Exception exception) {
 		    exception.printStackTrace();
 		}
-		//2.´´½¨Êı¾İ¿âÁ¬½Ó×Ö·û´®
+		//2.åˆ›å»ºæ•°æ®åº“è¿æ¥å­—ç¬¦ä¸²
 		 
-		//3.½¨Á¢Êı¾İ¿âÁ¬½Ó
+		//3.å»ºç«‹æ•°æ®åº“è¿æ¥
 		try {
 			connection = DriverManager.getConnection(dbURL, "root", "980401");
 		    String sql="update adminbook set book_name="+"'"+name+"',"+"book_publishers="+"'"+publishers+"',book_author='"+author +"'where id="+id;
             statement = connection.createStatement();
             int rows=statement.executeUpdate(sql);
-		    System.out.println("ÄúÒÑ³É¹¦ĞŞ¸Ä"+rows+"ÌõÊı¾İ");
+		    System.out.println("æ‚¨å·²æˆåŠŸä¿®æ”¹"+rows+"æ¡æ•°æ®");
 		    
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -67,7 +67,7 @@ class JDBCbook {
 			this.colse(connection, statement,null);
 		}
         }
-	public void Delete_Book(int id){//²éÑ¯ËùÓĞÊé¼®
+	public void Delete_Book(int id){//æŸ¥è¯¢æ‰€æœ‰ä¹¦ç±
     	Connection connection=null;
     	Statement statement=null;
         try {
@@ -77,15 +77,15 @@ class JDBCbook {
 		} catch (java.lang.Exception exception) {
 		    exception.printStackTrace();
 		}
-		//2.´´½¨Êı¾İ¿âÁ¬½Ó×Ö·û´®
+		//2.åˆ›å»ºæ•°æ®åº“è¿æ¥å­—ç¬¦ä¸²
 		 
-		//3.½¨Á¢Êı¾İ¿âÁ¬½Ó
+		//3.å»ºç«‹æ•°æ®åº“è¿æ¥
 		try {
 			connection = DriverManager.getConnection(dbURL, "root", "980401");
 		    String sql="delete * from adminbook where id="+id;
             statement = connection.createStatement();
             int rows=statement.executeUpdate(sql);
-		    System.out.println("ÄúÒÑ³É¹¦É¾³ıÁË"+rows+"ÌõÊı¾İ");
+		    System.out.println("æ‚¨å·²æˆåŠŸåˆ é™¤äº†"+rows+"æ¡æ•°æ®");
 		    
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -94,7 +94,7 @@ class JDBCbook {
 			this.colse(connection, statement,null);
 		}
         }
-	public void Query_Publishers(String book_publishers){//²éÑ¯Êé¼®
+	public void Query_Publishers(String book_publishers){//æŸ¥è¯¢ä¹¦ç±
     	Connection connection=null;
     	Statement statement=null;
     	datas4 = null;
@@ -119,11 +119,8 @@ class JDBCbook {
 	    		name=rs.getString("book_name");
 	    		publishers=rs.getString("book_publishers");
 	    		author=rs.getString("book_author");
-	    		//Ê±¼ä
-	    		datas4[index][0]=String.valueOf(id);
-	    		datas4[index][1]=String.valueOf(name);
-	    		datas4[index][2]=String.valueOf(publishers);
-	    		datas4[index][3]=String.valueOf(author);
+	    		//æ—¶é—´
+	    		
 	    		
 	    		System.out.println("id:"+id+" book_name:"+name+"     book_publishers:"+publishers+"  book_author:"+author);
 	    		index++;
@@ -136,7 +133,7 @@ class JDBCbook {
 			this.colse(connection, statement,null);
 		}
         }
-	public void Query_author(String book_author){//²éÑ¯Êé¼®
+	public void Query_author(String book_author){//æŸ¥è¯¢ä¹¦ç±
     	Connection connection=null;
     	Statement statement=null;
     	datas3 = null;
@@ -147,9 +144,9 @@ class JDBCbook {
 		} catch (java.lang.Exception exception) {
 		  
 		}
-		//2.´´½¨Êı¾İ¿âÁ¬½Ó×Ö·û´®
-		System.out.println("´´½¨Êı¾İ¿âÁ¬½Ó×Ö·û´®");
-		//3.½¨Á¢Êı¾İ¿âÁ¬½Ó
+		//2.åˆ›å»ºæ•°æ®åº“è¿æ¥å­—ç¬¦ä¸²
+		System.out.println("åˆ›å»ºæ•°æ®åº“è¿æ¥å­—ç¬¦ä¸²");
+		//3.å»ºç«‹æ•°æ®åº“è¿æ¥
 		try {
 			connection = DriverManager.getConnection(dbURL, "root", "980401");
 		    String sql="select * from adminbook where book_name like"+ "'%"+book_author+"%''";
@@ -163,11 +160,8 @@ class JDBCbook {
 	    		name=rs.getString("book_name");
 	    		publishers=rs.getString("book_publishers");
 	    		author=rs.getString("book_author");
-	    		//Ê±¼ä
-	    		datas3[index][0]=String.valueOf(id);
-	    		datas3[index][1]=String.valueOf(name);
-	    		datas3[index][2]=String.valueOf(publishers);
-	    		datas3[index][3]=String.valueOf(author);
+	    		//æ—¶é—´
+	    		
 	    		
 	    		System.out.println("id:"+id+" book_name:"+name+"     book_publishers:"+publishers+"  book_author:"+author);
 	    		index++;
@@ -180,7 +174,7 @@ class JDBCbook {
 			this.colse(connection, statement,null);
 		}
         }
-	public void Query_BookName(String book_name){//²éÑ¯Êé¼®
+	public void Query_BookName(String book_name){//æŸ¥è¯¢ä¹¦ç±
     	Connection connection=null;
     	Statement statement=null;
     	datas = null;
@@ -191,7 +185,7 @@ class JDBCbook {
 		} catch (java.lang.Exception exception) {
 		    exception.printStackTrace();
 		}
-		//2.´´½¨Êı¾İ¿âÁ¬½Ó×Ö·û´®
+		//2.åˆ›å»ºæ•°æ®åº“è¿æ¥å­—ç¬¦ä¸²
 		 
 		try {
 			connection = DriverManager.getConnection(dbURL, "root", "980401");
@@ -207,10 +201,7 @@ class JDBCbook {
 	    		publishers=rs.getString("book_publishers");
 	    		author=rs.getString("book_author");
 	    		time=rs.getTimestamp("create_time");
-	    		datas[index][0]=String.valueOf(id);
-	    		datas[index][1]=String.valueOf(name);
-	    		datas[index][2]=String.valueOf(publishers);
-	    		datas[index][3]=String.valueOf(time);
+	    		
 	    		
 	    		System.out.println("id:"+id+" book_name:"+name+"     book_publishers:"+publishers+"  book_author:"+author+"time:"+time);
 	    		index++;
@@ -224,7 +215,7 @@ class JDBCbook {
 		}
         }
 	
-	public void All_Book(){//²éÑ¯ËùÓĞÊé¼®
+	public void All_Book(){//æŸ¥è¯¢æ‰€æœ‰ä¹¦ç±
     	Connection connection=null;
     	Statement statement=null;
     	String[][]  data = null;
@@ -235,9 +226,9 @@ class JDBCbook {
 		} catch (java.lang.Exception exception) {
 		    exception.printStackTrace();
 		}
-		//2.´´½¨Êı¾İ¿âÁ¬½Ó×Ö·û´®
+		//2.åˆ›å»ºæ•°æ®åº“è¿æ¥å­—ç¬¦ä¸²
 	 
-		//3.½¨Á¢Êı¾İ¿âÁ¬½Ó
+		//3.å»ºç«‹æ•°æ®åº“è¿æ¥
 		try {
 			connection = DriverManager.getConnection(dbURL, "root", "980401");
 		    String sql="select * from adminbook";
@@ -249,11 +240,8 @@ class JDBCbook {
 	    		name=rs.getString("book_name");
 	    		publishers=rs.getString("book_publishers");
 	    		author=rs.getString("book_author");
-	    		//Ê±¼ä
-	    		data[index][0]=String.valueOf(id);
-	    		data[index][1]=String.valueOf(name);
-	    		data[index][2]=String.valueOf(publishers);
-	    		data[index][3]=String.valueOf(author);
+	    		//æ—¶é—´
+	    		
 	    		
 	    		System.out.println("id:"+id+" book_name:"+name+"     book_publishers:"+publishers+"  book_author:"+author);
 	    		index++;
